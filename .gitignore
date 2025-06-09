@@ -3,4 +3,6 @@ old
 sam_vit_b_01ec64.pth
 sam2_hiera_base_plus.pt
 sam2_hiera_tiny.pt
+segment-anything-2
 op_dfds(copy).ipynb
+.venv
