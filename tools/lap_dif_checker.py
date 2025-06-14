@@ -6,16 +6,16 @@ import cv2 as cv
 def sort_key(x):
     return int(x.split("/")[0][1:-4])
 
-CAL_HEAD = "./check/"
+CAL_HEAD = "./datas/train_w/"
 
 
-detail = CAL_HEAD[:-1]+"_detail_wk/"
+detail = CAL_HEAD[:-1]+"_detail/"
 two_folder = os.listdir(detail)
 two_folder = sorted(two_folder)
 Difference = [detail+two_folder[0]+"/"+name for name in sorted(os.listdir(detail+two_folder[0]),key=sort_key)]
 Laplacian = [detail+two_folder[1]+"/"+name for name in sorted(os.listdir(detail+two_folder[1]),key=sort_key)]
 print(detail)
-size = 4
+size = 10
 group_diff = np.array([Difference[i] for i in range(len(Difference))])
 group_diff = group_diff.reshape(size,25)
 group_lap = np.array([Laplacian[i] for i in range(len(Laplacian))])
@@ -113,7 +113,8 @@ ax2.boxplot(all_fin2,vert=True,patch_artist=True)
 ax2.set_title(f"Boxplot of Laplacian")
 ax2.set_xlabel('Set')
 ax2.set_ylabel('Laplacian')
-plt.show()
+ax2.set_ylim(0,5e10)
+fig.savefig("boxplot.png", dpi=300, bbox_inches='tight')
 """   
 fig3 = plt.figure(figsize=(10, 10))
 ax3 = fig3.add_subplot(211)
